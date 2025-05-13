@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="/web/images/cash.ico" rel="icon" type="image/x-icon"> -->
+    <title>{{block "title" .}}{{end}} $ Money Tracker</title>
+    <link href="/web/css/app.css" rel=stylesheet>
+    <!-- <script type="module" src="/web/js/app.js"></script> -->
+    <!-- <link href="/web/manifest.json" rel="manifest"> -->
+    <style>
+        @import url("/web/css/pico.min.css") layer(base);
+    </style>
+</head>
+
+<body class="pico container">
+
+    <header>
+        <nav role="navigation" data-breakpoint="md">
+            <ul>
+                <li>
+                    <a href="/app/transactions/edit/">
+                        <img src="/web/images/cash.svg" style="height:2.5em;min-width:2.5em;"
+                            alt="Cash Tracker Logo"></img>
+                    </a>
+                </li>
+                {{if not .loggedOut}}
+                <li id="sync" hidden>
+                    <form action="/sw/sync/" method="post">
+                        <button>Sync Data</button>
+                    </form>
+                </li>
+                {{end}}
+                <li><h2 style="margin:0;">{{block "header" .}}Cash{{end}}</h2></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> {{block "main" .}}{{end}} </main>
+
+    <footer></footer>
+
+    {{ block "scripts" . }}{{ end }}
+    <script type="module" src="/web/js/html-form.min.js"></script>
+    <script type="module" src="/web/js/toaster.js"></script>
+</body>
+
+</html>

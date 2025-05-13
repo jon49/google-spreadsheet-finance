@@ -1,0 +1,20 @@
+{
+    "name": "Cash Tracker",
+    "background_color": "#333",
+    "theme_color": "#e48500",
+    "icons": [
+        {
+            "src": "/web/images/cash.ico",
+            "sizes": "16x16",
+            "type": "image/ico"
+        },
+        {
+            "src": "/web/images/cash.png",
+            "sizes": "any",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/app/transactions/edit/",
+    "scope": "/app/",
+    "display": "standalone"
+}

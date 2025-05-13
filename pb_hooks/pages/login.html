@@ -1,0 +1,20 @@
+{{define "title"}}
+Login
+{{end}}
+
+{{define "header"}}<h2>Login</h2>{{end}}
+
+{{define "main"}}
+
+<form method="post" action="/login">
+    {{if .msg}}<p class="msg">{{.msg}}</p>{{end}}
+    <fieldset class="grid">
+        <input placeholder="Email" aria-label="Email" type="text" name=email required autocomplete="email"
+            autofocus></label>
+        <input placeholder="Password" aria-label="Password" type="password" name=password required
+            autocomplete="current-password">
+    </fieldset>
+    <input type="submit" value="Login">
+</form>
+
+{{end}}

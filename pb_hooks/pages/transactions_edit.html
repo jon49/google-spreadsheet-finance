@@ -1,0 +1,83 @@
+{{define "head"}}
+<style>
+    #message {
+        display: none;
+        margin: 20px;
+        font-weight: bold;
+        color: green;
+        padding: 8px;
+        background-color: beige;
+        border-radius: 4px;
+        border-color: aquamarine;
+    }
+</style>
+{{end}}
+
+{{define "title"}}Edit Transaction{{end}}
+
+{{define "header"}}Transaction{{end}}
+
+{{define "main"}}
+<div id="msg">
+    {{if .msg}}<p class="msg">{{.msg}}</p>{{end}}
+</div>
+
+<form id="refresh-form" action="/app/transactions/edit?refresh=true" hf-select="main">
+    <button type="submit">Refresh</button>
+</form>
+
+<form id="transaction-form" method="POST" hf-target="#message" hf-swap="innerHTML">
+
+    <div>
+        <label>Client Name:
+            <input type="date" name="Date" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Account:
+            <select name="Account" required>
+                {{ range .userSettings }}
+                {{ if .Account }}<option value="{{.Account}}" selected>{{.AccountName}}</option>{{ end }}
+                {{ end}}
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Amount:
+            <input type="number" name="Amount" step="0.01" required>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Category:
+            <select name="Category" required>
+                {{ range .userSettings }}
+                {{ if .Category }}<option value="{{.Category}}">{{.CategoryName}}</option>{{ end }}
+                {{ end }}
+            </select>
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Description:
+            <input type="text" name="Notes">
+        </label>
+    </div>
+
+    <button type="submit" id="submit-button">Submit</button>
+
+</form>
+
+<div id="message" class="snack-bar"></div>
+
+{{end}}
+
+{{ define "scripts" }}
+<script type="module" src="/web/js/transactions-edit.js"></script>
+{{ end }}
