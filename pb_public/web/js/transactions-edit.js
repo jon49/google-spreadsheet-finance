@@ -10,7 +10,12 @@ function setDate($form) {
 setDate(document.getElementById("transaction-form"))
 
 document.addEventListener("hf:request-before", e => {
-    e.detail.submitter.innerText = "Submitting..."
+    let button = e.detail.submitter
+    if (form.id === "transaction-form") {
+        button.innerText = "Submitting..."
+    } else {
+        button.innerText = "Refreshing..."
+    }
 })
 
 document.addEventListener("hf:completed", e => {
