@@ -1,4 +1,5 @@
-function setDate($form) {
+function setDate() {
+    document.getElementById("transaction-form")
     if (!$form.Date.value) {
         let d = new Date()
         let date = d.getDate().toString().padStart(2, "0")
@@ -7,15 +8,13 @@ function setDate($form) {
     }
 }
 
-setDate(document.getElementById("transaction-form"))
+setDate()
 
 document.addEventListener("hf:request-before", e => {
-    let button = e.detail.submitter
-    if (form.id === "transaction-form") {
-        button.innerText = "Submitting..."
-    } else {
-        button.innerText = "Refreshing..."
-    }
+    e.detail.submitter.innerText =
+        form.id === "transaction-form"
+            ? "Submitting..."
+        : "Refreshing..."
 })
 
 document.addEventListener("hf:completed", e => {
@@ -27,5 +26,5 @@ document.addEventListener("hf:completed", e => {
     } else {
         button.innerText = "Refresh"
     }
-    setDate(document.getElementById("transaction-form"))
+    setDate()
 })
